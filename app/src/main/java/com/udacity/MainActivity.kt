@@ -9,6 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,9 +34,22 @@ class MainActivity : AppCompatActivity() {
 
         // TEST
         custom_button.setBtnState(ButtonState.Loading)
+
         custom_button.setOnClickListener {
-            custom_button.setBtnState(ButtonState.Clicked)
-//            download()
+            when {
+                radio_btn_glide.isChecked -> {
+                    download(URL_GLIDE)
+                }
+                radio_btn_udacity.isChecked -> {
+                    download(URL_UDACITY)
+                }
+                radio_btn_retrofit.isChecked -> {
+                    download(URL_RETROFIT)
+                }
+                else -> {
+                    Toast.makeText(applicationContext, "Please select the file to download", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -44,9 +59,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun download() {
+    private fun download(url: String) {
+        custom_button.setBtnState(ButtonState.Clicked)
+
         val request =
-            DownloadManager.Request(Uri.parse(URL))
+            DownloadManager.Request(Uri.parse(url))
                 .setTitle(getString(R.string.app_name))
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)
@@ -59,8 +76,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val URL =
-            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        private const val URL_GLIDE = "https://github.com/bumptech/glide"
+        private const val URL_UDACITY = "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        private const val URL_RETROFIT = "https://github.com/square/retrofit"
         private const val CHANNEL_ID = "channelId"
     }
 
