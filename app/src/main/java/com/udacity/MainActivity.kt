@@ -30,8 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
+        // TEST
+        custom_button.setBtnState(ButtonState.Loading)
         custom_button.setOnClickListener {
-            download()
+            custom_button.setBtnState(ButtonState.Clicked)
+//            download()
         }
     }
 
