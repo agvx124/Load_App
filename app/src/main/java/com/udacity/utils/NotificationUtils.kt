@@ -3,7 +3,9 @@ package com.udacity.utils
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import androidx.core.app.NotificationCompat
+import com.udacity.DetailActivity
 import com.udacity.R
 
 
@@ -12,8 +14,21 @@ const val NOTIFICATION_ID = 0
 fun NotificationManager.sendNotification(
         messageBody: String,
         applicationContext: Context,
-        contentPendingIntent: PendingIntent
+        fileName: String,
+        downloadStatus: Boolean
 ) {
+
+    val intentContent = Intent(applicationContext, DetailActivity::class.java).apply {
+        putExtra("fileName", fileName)
+        putExtra("downloadStatus", downloadStatus)
+    }
+
+    val pendingIntent = PendingIntent.getActivity(
+            applicationContext,
+            NOTIFICATION_ID,
+            intentContent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+    )
 
     val builder = NotificationCompat.Builder(
             applicationContext,
@@ -23,7 +38,7 @@ fun NotificationManager.sendNotification(
             .setContentTitle(applicationContext
                     .getString(R.string.notification_title))
             .setContentText(messageBody)
-            .setContentIntent(contentPendingIntent)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
     notify(NOTIFICATION_ID, builder.build())
