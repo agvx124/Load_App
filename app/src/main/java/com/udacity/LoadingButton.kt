@@ -39,7 +39,7 @@ class LoadingButton @JvmOverloads constructor(
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         when(new) {
             ButtonState.Loading -> {
-                txtButtonLabel = context.getString(R.string.button_loading)
+                txtButtonLabel = context.getString(R.string.button_name)
 
                 valueAnimator = ValueAnimator.ofFloat(0F, measuredWidth.toFloat()).apply {
                     duration = 1600
@@ -54,7 +54,19 @@ class LoadingButton @JvmOverloads constructor(
                 }
             }
             ButtonState.Clicked -> {
-                txtButtonLabel = context.getString(R.string.button_name)
+                txtButtonLabel = context.getString(R.string.button_loading)
+
+                valueAnimator = ValueAnimator.ofFloat(0F, measuredWidth.toFloat()).apply {
+                    duration = 1600
+
+                    addUpdateListener { animation ->
+                        width = animation.animatedValue as Float
+                        withAngle = animation.animatedValue as Float
+                        buttonColor = fanLoadingColor
+                        invalidate()
+                    }
+                    start()
+                }
             }
             ButtonState.Completed -> {
                 txtButtonLabel = context.getString(R.string.button_name)
