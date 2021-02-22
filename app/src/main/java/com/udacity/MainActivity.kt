@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var downloadManager: DownloadManager
 
     private lateinit var notificationManager: NotificationManager
-    private lateinit var pendingIntent: PendingIntent
-    private lateinit var action: NotificationCompat.Action
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

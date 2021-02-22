@@ -28,7 +28,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        android:contentDescription="@string/cloud_example" />
 
     <RadioGroup
         android:id="@+id/radio_group"
@@ -48,7 +49,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="20sp"
-            android:text="Glide - Image Loading Library by BumpTech" />
+            android:text="@string/content_glide" />
 
         <RadioButton
             android:id="@+id/radio_btn_udacity"
@@ -57,14 +58,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="20sp"
-            android:text="LoadApp - Current repository by Udacity" />
+            android:text="@string/content_repository" />
 
         <RadioButton
             android:id="@+id/radio_btn_retrofit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Retrofit - Type safe HTTP Client for Android and Java By Square. lnc" />
+            android:text="@string/content_retrofit" />
 
     </RadioGroup>
 

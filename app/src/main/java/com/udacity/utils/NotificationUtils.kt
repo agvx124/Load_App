@@ -1,5 +1,6 @@
 package com.udacity.utils
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -39,6 +40,7 @@ fun NotificationManager.sendNotification(
                     .getString(R.string.notification_title))
             .setContentText(messageBody)
             .setContentIntent(pendingIntent)
+            .addAction(R.drawable.ic_assistant_black_24dp, "Check the Status", pendingIntent)
             .setAutoCancel(true)
 
     notify(NOTIFICATION_ID, builder.build())

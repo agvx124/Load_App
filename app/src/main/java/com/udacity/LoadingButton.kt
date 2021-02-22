@@ -36,7 +36,7 @@ class LoadingButton @JvmOverloads constructor(
 
     private var valueAnimator = ValueAnimator()
 
-    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { _, _, new ->
         when(new) {
             ButtonState.Loading -> {
                 txtButtonLabel = context.getString(R.string.button_name)
